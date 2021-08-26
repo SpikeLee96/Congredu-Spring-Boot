@@ -3,7 +3,8 @@ Protótipo de site educacional utilizando Spring Boot.
 Projeto Congredu, que inicialmente foi desenvolvido em Node(https://github.com/SpikeLee96/Congredu) , foi portado por mim para Spring Boot com finalidade de aprimorar conhecimentos no framework. 
 Algumas funcionalidades foram adicionadas, como sessão de usuário, encriptação de senha, e portal de opções.
 
-Para iniciar a aplicação primeiramente instale a IDE Eclipse, e o banco de dados PostgreSQL através dos seguintes links:
+Para iniciar a aplicação primeiramente instale a linguagem Java, a IDE Eclipse, e o banco de dados PostgreSQL através dos seguintes links:
+https://www.oracle.com/br/java/technologies/javase-jdk11-downloads.html
 https://www.eclipse.org/downloads/
 https://www.postgresql.org/download/
 
