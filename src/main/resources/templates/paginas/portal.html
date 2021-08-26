@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:th="http://www.thymeleaf.org"
+	layout:decorate="layouts/mainLayout">
+<head>
+<meta http-equiv="content-type" content="text/html" charset="utf-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+
+<!-- styles -->
+<link
+	href="https://fonts.googleapis.com/css?family=Montserrat:200,400,700&display=swap"
+	rel="stylesheet" />
+<link
+	href="https://necolas.github.io/normalize.css/latest/normalize.css"
+	rel="stylesheet" />
+
+<link href="../static/css/base.css" rel="stylesheet" />
+<link href="../static/css/left.css" rel="stylesheet" />
+
+<script type="text/javascript">
+		function deleteConfirmation(){
+			if (window.confirm('Você confirma a exclusão da sua conta de usuário?')){
+				document.querySelector('#form-delete').submit();
+			}	
+		}
+</script>
+
+<script th:inline="javascript">
+/*<![CDATA[*/
+
+    var presenca = /*[[${usuario.presenca}]]*/ 'default';
+    
+    function marcarPresenca(){
+			if (!presenca){
+				if (window.confirm('Você confirma sua presença no dia mais próximo do evento?')){
+					document.querySelector('#form-presenca').submit();
+				}	
+			} else {
+				if (window.confirm('Você deseja retirar a confirmação da sua presença no dia mais próximo do evento?')){
+					document.querySelector('#form-presenca').submit();
+				}
+			}
+		}
+	
+	function uploadFiles(){
+		if (document.getElementById("input-upload").files.length == 0){
+			alert("Não há arquivos selecionados!");
+		} else {
+			document.querySelector('#form-upload').submit();
+		}
+	}
+
+/*]]>*/
+</script>
+
+<title>Congredu - Portal</title>
+</head>
+
+<body>
+
+	<div class="" layout:fragment="content">
+
+		<table>
+			<tr>
+				<th>
+					<div class="zeynep">
+						<ul>
+							<script th:inline="javascript">
+							/*<![CDATA[*/
+							
+							    var success = /*[[${success}]]*/ 'default';
+							    if(success){
+							    	alert(success);
+							    }
+							
+							/*]]>*/
+							</script>
+							<form id="form-upload" action="/upload" method="post" enctype="multipart/form-data">
+								<br>
+								<li><a><input style="color: gray;" id="input-upload" type="file" name="files" accept=".pdf" multiple></a></li>
+								<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+								<input hidden type="submit" value="Upload Files">
+							</form>
+							<li><a onclick="uploadFiles()">Enviar Ebook (em PDF)</a></li>
+							<li><a onclick="marcarPresenca()" th:text="${msg}"></a>
+								<form id="form-presenca" th:action="@{presenca}" method=post></form>
+							<li><a
+								onclick="document.querySelector('#form-update').submit()">Editar
+									Dados</a>
+								<form id="form-update"
+									th:action="@{cadastroUp/{id}(id=${usuario.id})}" method="post"></form>
+							<li><a onclick="deleteConfirmation()">Excluir Conta</a></li>
+							<form id="form-delete"
+								th:action="@{deletar/{id}(id=${usuario.id})}" method="post"></form>
+
+						</ul>
+					</div>
+					<p id="comment" style="color: #404143; font-weight: bold; padding: 15px 40px; width: 295px; height: 100px; text-align: left;" th:text="${msg2}"></p>
+					
+					<script th:inline="javascript">
+						/*<![CDATA[*/
+	
+	    				var presenca = /*[[${usuario.presenca}]]*/ 'default';
+	    
+	    				if (!presenca){
+							document.getElementById("comment").hidden = true;
+						} else {
+							document.getElementById("comment").hidden = false;
+						}
+	
+						/*]]>*/
+					</script>
+					
+				</th>
+				<th>
+					<div style="text-align: center; padding: 70px 55px;">
+						<h1>
+							Congredu<span>portal do aluno</span>
+						</h1>
+
+						<p class="btn-open first">&nbsp;&nbsp;&nbsp;&nbsp;Bem-vindo, <span th:text="${usuario.nome}"></span> &nbsp;&nbsp;&nbsp;&nbsp;
+						</p>
+					</div>
+
+
+				</th>
+				<th>
+					<div class="zeynep">
+						<ul>
+						
+							<br>
+							<li><a style="color: gray; text-align:center;">Dados de usuário</a></li>
+							<li><a style="text-align:center;" th:text="${usuario.email}"></a></li>
+							<li><a style="text-align:center;" th:text="${usuario.nome}"></a></li>
+							<li><a style="text-align:center;" th:text="${usuario.sobrenome}"></a></li>
+							<li><a style="text-align:center;" th:text="${usuario.apelido}"></a></li>
+
+						</ul>
+					</div>
+				</th>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>

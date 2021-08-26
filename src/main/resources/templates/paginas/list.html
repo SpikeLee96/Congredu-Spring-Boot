@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="layouts/mainLayout">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+    <div class="" layout:fragment="content">
+
+
+      <style media="screen">
+        .subtitulo{
+          font-size: 16px;
+          font-family: Impact, Charcoal, sans-serif;
+        }
+        td, th{
+          border: 1px solid black;
+          text-align: center;
+          background-color: white;
+        }
+        h3 {
+          text-shadow: 3px 3px 3px red;
+          color: black;
+          font-size: 26px;
+          font-family: 'Berkshire Swash';
+        }
+        a{
+          color: black;
+          text-shadow: 3px 3px 3px white;
+        }
+      </style>
+
+      <div align="left">
+      </div>
+      <h3> Lista de Usuários </h3>
+      
+      <table class="table table-striped">
+          <thead>
+              <tr>
+                  <td class="subtitulo">&nbsp;&nbsp;Nome&nbsp;&nbsp;</td>
+                  <td class="subtitulo">&nbsp;&nbsp;Sobrenome&nbsp;&nbsp;</td>
+                  <td class="subtitulo">&nbsp;&nbsp;Apelido&nbsp;&nbsp;</td>
+                  <td class="subtitulo">&nbsp;&nbsp;Email&nbsp;&nbsp;</td>
+                  <td>&nbsp;&nbsp;Editar&nbsp;&nbsp;</td>
+                  <td>&nbsp;&nbsp;Deletar&nbsp;&nbsp;</td>
+              </tr>
+          </thead>
+          <tbody>
+              <div th:each = "usuario : ${usuarios}">
+	              <tr>
+	                  <td th:text = "${usuario.nome}">&nbsp;&nbsp;{{this.nome}}&nbsp;&nbsp;</td>
+	                  <td th:text = "${usuario.sobrenome}">&nbsp;&nbsp;{{this.sobrenome}}&nbsp;&nbsp;</td>
+	                  <td th:text = "${usuario.apelido}">&nbsp;&nbsp;{{this.apelido}}&nbsp;&nbsp;</td>
+	                  <td th:text = "${usuario.email}">&nbsp;&nbsp;{{this.email}}&nbsp;&nbsp;</td>
+	                  <td>
+	                      <form th:action="@{cadastroUp/{id}(id=${usuario.id})}" method="post">
+	                      	<input type="submit" value="Atualizar"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
+	                      </form>
+	                  </td>
+	                  <td>
+	                  	  <form th:action="@{deletar/{id}(id=${usuario.id})}" method="post">
+	                  	  	<input type="submit" value="Deletar" onclick="return confirm('Você confirma a exclusão deste usuário?');"><i class="fa fa-trash fa-lg" aria-hidden="true"></i>
+	                  	  </form>
+	                  </td>
+	              </tr>
+              </div>
+          </tbody>
+      </table>
+    </div>
+  </body>
+</html>
