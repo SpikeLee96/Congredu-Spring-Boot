@@ -13,6 +13,6 @@ https://www.postgresql.org/download/
 4. Cole o conteúdo do arquivo "bd do projeto (PostgreSQL).txt" disposto na raíz repositório do projeto, em seguida, execute o código;
 5. Inicie o eclipse e selecione as opções : File > Import > Git > Projects from git (with smart import) > Clone URI > Local folder... (selecione a pasta do projeto baixado) > Next > Next > Next > Finish;
 6. Ainda no eclipse, com o projeto importado, clique na pasta raíz do projeto com o botão direito do mouse, selecione a opção "Configure", e em seguida "Add Gradle Nature";
-7. Quando o gradle finalizar o download das dependencias, clique novamente na pasta raíz do projeto com o botão direito do mouse, selecione a opção "Run as", e em seguida "3 Spring Boot App";
+7. Quando o eclipse finalizar o download das dependencias estabelecidas no gradle, clique novamente na pasta raíz do projeto com o botão direito do mouse, selecione a opção "Run as", e em seguida "3 Spring Boot App";
 8. Abra qualquer navegador (recomendados Chrome e Firefox), e cole na barra de endereço "localhost:8081";
 9. Aplicativo pronto para uso :)
